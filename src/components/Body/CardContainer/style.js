@@ -11,4 +11,9 @@ export const CardContainerLayout = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   justify-items: center;
+  @media (max-width: 624px) {
+    grid-template-columns: 1fr 1fr;
+    margin-top: 80px;
+    margin-bottom: 50px;
+  }
 `;

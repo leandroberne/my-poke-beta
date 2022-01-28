@@ -9,4 +9,7 @@ export const FooterLayout = styled.div`
   justify-content: center;
   align-items: center;
   border-top: 1px solid #dddddd;
+  @media (max-width: 624px) {
+    margin-top: 80px;
+  }
 `;
