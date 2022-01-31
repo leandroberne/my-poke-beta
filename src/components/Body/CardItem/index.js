@@ -11,27 +11,40 @@ import ImageChar from '../../../assets/charmander.jpg';
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
+    maxWidth: 360,
   },
   media: {
-    height: 140,
+    height: 160,
   },
 });
 
-function CardItem() {
+function CardItem({ pokemon }) {
   const classes = useStyles();
+  let zeros = '';
+  if (pokemon.id <= 9) {
+    zeros = '00';
+  } else if (pokemon.id <= 99) {
+    zeros = 0;
+  }
+
   return (
     <CardItemLayout>
       <Card className={classes.root}>
         <CardActionArea>
           <CardMedia
             className={classes.media}
-            image={ImageChar}
+            image={
+              window.location.origin +
+              '/imagenes/' +
+              zeros +
+              pokemon.id +
+              '.png'
+            }
             title='Contemplative Reptile'
           />
           <CardContent>
             <Typography gutterBottom variant='h5' component='h2'>
-              Charmander
+              {pokemon.name.english}
             </Typography>
           </CardContent>
         </CardActionArea>
