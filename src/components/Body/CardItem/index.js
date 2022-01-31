@@ -6,15 +6,14 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-//quitar esto
-import ImageChar from '../../../assets/charmander.jpg';
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 360,
+    maxWidth: 200,
   },
   media: {
-    height: 160,
+    height: 200,
+    width: 200,
   },
 });
 

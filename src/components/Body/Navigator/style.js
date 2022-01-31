@@ -6,4 +6,5 @@ export const NavigatorLayout = styled.div`
   width: 350px;
   margin: 0 auto;
   height: 10%;
+  margin-bottom: 20px;
 `;

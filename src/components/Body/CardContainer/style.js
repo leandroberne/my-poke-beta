@@ -5,7 +5,7 @@ export const CardContainerLayout = styled.div`
   align-content: center;
   margin: 0 auto;
   height: 80%;
-  margin-top: 30px;
+  margin-top: 50px;
   margin-bottom: 50px;
   width: 80%;
   display: grid;

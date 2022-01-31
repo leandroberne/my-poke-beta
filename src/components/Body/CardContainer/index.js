@@ -7,14 +7,7 @@ function CardContainer() {
   return (
     <CardContainerLayout>
       {pokemonList.map((pokemon, index) => {
-        const srcImg = '../../../assets/pokemon.json/images/002.png';
-        return (
-          <CardItem
-            key={pokemon.id}
-            pokemon={pokemon}
-            imagen={srcImg}
-          ></CardItem>
-        );
+        return <CardItem key={pokemon.id} pokemon={pokemon}></CardItem>;
       })}
     </CardContainerLayout>
   );
