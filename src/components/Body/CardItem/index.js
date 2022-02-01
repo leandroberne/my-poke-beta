@@ -17,7 +17,7 @@ const useStyles = makeStyles({
   },
 });
 
-function CardItem({ pokemon }) {
+function CardItem({ pokemon, hacerClick }) {
   const classes = useStyles();
   let zeros = '';
   if (pokemon.id <= 9) {
@@ -40,6 +40,9 @@ function CardItem({ pokemon }) {
               '.png'
             }
             title='Contemplative Reptile'
+            onClick={() => {
+              hacerClick(pokemon);
+            }}
           />
           <CardContent>
             <Typography gutterBottom variant='h5' component='h2'>
