@@ -3,6 +3,8 @@ import { CardContainerLayout } from './style';
 import CardItem from '../CardItem';
 import { pokemonList } from '../../../assets/pokedex';
 import { useNavigate } from 'react-router-dom';
+import Search from '../Search';
+import Navigator from '../Navigator';
 
 function CardContainer({ AppState }) {
   const navigateApp = useNavigate();
@@ -17,17 +19,21 @@ function CardContainer({ AppState }) {
   };
 
   return (
-    <CardContainerLayout>
-      {pokemonList.map((pokemon, index) => {
-        return (
-          <CardItem
-            key={index}
-            pokemon={pokemon}
-            hacerClick={handleClick}
-          ></CardItem>
-        );
-      })}
-    </CardContainerLayout>
+    <>
+      <Search></Search>
+      <CardContainerLayout>
+        {pokemonList.map((pokemon, index) => {
+          return (
+            <CardItem
+              key={index}
+              pokemon={pokemon}
+              hacerClick={handleClick}
+            ></CardItem>
+          );
+        })}
+      </CardContainerLayout>
+      <Navigator></Navigator>
+    </>
   );
 }
 

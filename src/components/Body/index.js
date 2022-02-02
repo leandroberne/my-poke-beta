@@ -15,7 +15,6 @@ function Body() {
   const controllerAppState = { state: appState, setState: setAppState };
   return (
     <BodyLayout>
-      <Search></Search>
       <BrowserRouter>
         <Routes>
           <Route
@@ -30,7 +29,6 @@ function Body() {
           ></Route>
         </Routes>
       </BrowserRouter>
-      <Navigator></Navigator>
     </BodyLayout>
   );
 }
