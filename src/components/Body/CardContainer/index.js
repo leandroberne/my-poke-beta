@@ -17,6 +17,8 @@ function CardContainer({ AppState }) {
     name: '',
   });
 
+  const [actualPage, setActualPage] = useState(0);
+
   useEffect(() => {
     if (mainState.listPokemon.length === 0) {
       axios({
@@ -62,12 +64,26 @@ function CardContainer({ AppState }) {
       });
   };
 
+  const pokePagination = () => {
+    return mainState.listPokemon.slice(actualPage, actualPage + 9);
+  };
+
+  const nextPage = () => {
+    setActualPage(actualPage + 9);
+  };
+
+  const prevPage = () => {
+    if (actualPage > 0) {
+      setActualPage(actualPage - 9);
+    }
+  };
+
   return (
     <>
       <Search setSearchState={setSearchState}></Search>
       <CardContainerLayout>
         {mainState.spinner && 'Cargando..'}
-        {!searchState.flag
+        {/* {!searchState.flag
           ? mainState.listPokemon.map((pokemon, index) => {
               return (
                 <CardItem
@@ -87,7 +103,30 @@ function CardContainer({ AppState }) {
                     hacerClick={handleClick}
                   ></CardItem>
                 );
+              })} */}
+        {!searchState.flag
+          ? pokePagination().map((pokemon, index) => {
+              return (
+                <CardItem
+                  key={index}
+                  pokemon={pokemon}
+                  hacerClick={handleClick}
+                ></CardItem>
+              );
+            })
+          : mainState.listPokemon
+              .filter((element) => element.name.includes(searchState.name))
+              .map((pokemon, index) => {
+                return (
+                  <CardItem
+                    key={index}
+                    pokemon={pokemon}
+                    hacerClick={handleClick}
+                  ></CardItem>
+                );
               })}
+        <button onClick={prevPage}>Anteriores</button>
+        <button onClick={nextPage}>Siguientes</button>
       </CardContainerLayout>
       <Navigator></Navigator>
     </>
