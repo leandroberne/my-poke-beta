@@ -83,28 +83,7 @@ function CardContainer({ AppState }) {
       <Search setSearchState={setSearchState}></Search>
       <CardContainerLayout>
         {mainState.spinner && 'Cargando..'}
-        {/* {!searchState.flag
-          ? mainState.listPokemon.map((pokemon, index) => {
-              return (
-                <CardItem
-                  key={index}
-                  pokemon={pokemon}
-                  hacerClick={handleClick}
-                ></CardItem>
-              );
-            })
-          : mainState.listPokemon
-              .filter((element) => element.name.includes(searchState.name))
-              .map((pokemon, index) => {
-                return (
-                  <CardItem
-                    key={index}
-                    pokemon={pokemon}
-                    hacerClick={handleClick}
-                  ></CardItem>
-                );
-              })} */}
-        {!searchState.flag
+        {!searchState.flag || searchState.name.length === 0
           ? pokePagination().map((pokemon, index) => {
               return (
                 <CardItem
@@ -125,10 +104,8 @@ function CardContainer({ AppState }) {
                   ></CardItem>
                 );
               })}
-        <button onClick={prevPage}>Anteriores</button>
-        <button onClick={nextPage}>Siguientes</button>
       </CardContainerLayout>
-      <Navigator></Navigator>
+      <Navigator prevPage={prevPage} nextPage={nextPage}></Navigator>
     </>
   );
 }

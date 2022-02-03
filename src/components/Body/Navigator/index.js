@@ -11,12 +11,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Navigator() {
+function Navigator({ prevPage, nextPage }) {
   const classes = useStyles();
   return (
     <NavigatorLayout>
       <div className={classes.root}>
         <Pagination count={10} color='primary' />
+        <button onClick={prevPage}>Anteriores</button>
+        <button onClick={nextPage}>Siguientes</button>
       </div>
     </NavigatorLayout>
   );
