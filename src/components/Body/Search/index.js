@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Search() {
+function Search({ setSearchState }) {
   const classes = useStyles();
   return (
     <SearchLayout>
@@ -35,6 +35,12 @@ function Search() {
           className={classes.input}
           placeholder='Buscar Pokemones'
           inputProps={{ 'aria-label': 'search google maps' }}
+          onChange={(e) =>
+            setSearchState({
+              flag: true,
+              name: e.target.value,
+            })
+          }
         />
         <IconButton
           type='submit'

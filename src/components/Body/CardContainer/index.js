@@ -12,6 +12,11 @@ function CardContainer({ AppState }) {
     spinner: true,
   });
 
+  const [searchState, setSearchState] = useState({
+    flag: false,
+    name: '',
+  });
+
   useEffect(() => {
     if (mainState.listPokemon.length === 0) {
       axios({
@@ -59,18 +64,30 @@ function CardContainer({ AppState }) {
 
   return (
     <>
-      <Search></Search>
+      <Search setSearchState={setSearchState}></Search>
       <CardContainerLayout>
         {mainState.spinner && 'Cargando..'}
-        {mainState.listPokemon.map((pokemon, index) => {
-          return (
-            <CardItem
-              key={index}
-              pokemon={pokemon}
-              hacerClick={handleClick}
-            ></CardItem>
-          );
-        })}
+        {!searchState.flag
+          ? mainState.listPokemon.map((pokemon, index) => {
+              return (
+                <CardItem
+                  key={index}
+                  pokemon={pokemon}
+                  hacerClick={handleClick}
+                ></CardItem>
+              );
+            })
+          : mainState.listPokemon
+              .filter((element) => element.name.includes(searchState.name))
+              .map((pokemon, index) => {
+                return (
+                  <CardItem
+                    key={index}
+                    pokemon={pokemon}
+                    hacerClick={handleClick}
+                  ></CardItem>
+                );
+              })}
       </CardContainerLayout>
       <Navigator></Navigator>
     </>
