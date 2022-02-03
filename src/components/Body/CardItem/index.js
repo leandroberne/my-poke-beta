@@ -18,13 +18,22 @@ const useStyles = makeStyles({
 });
 
 function CardItem({ pokemon, hacerClick }) {
-  const classes = useStyles();
   let zeros = '';
-  if (pokemon.id <= 9) {
+  let pId = '';
+  let arrayId = pokemon.url.split('');
+
+  if (arrayId.length === 36) {
     zeros = '00';
-  } else if (pokemon.id <= 99) {
+    pId = `${arrayId[34]}`;
+  } else if (arrayId.length === 37) {
     zeros = 0;
+    pId = `${arrayId[34]}${arrayId[35]}`;
+  } else {
+    pId = `${arrayId[34]}${arrayId[35]}${arrayId[36]}`;
   }
+
+  const classes = useStyles();
+  const urlImage = `https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/`;
 
   return (
     <CardItemLayout>
@@ -32,13 +41,7 @@ function CardItem({ pokemon, hacerClick }) {
         <CardActionArea>
           <CardMedia
             className={classes.media}
-            image={
-              window.location.origin +
-              '/imagenes/' +
-              zeros +
-              pokemon.id +
-              '.png'
-            }
+            image={urlImage + zeros + pId + '.png'}
             title='Contemplative Reptile'
             onClick={() => {
               hacerClick(pokemon);
@@ -46,7 +49,7 @@ function CardItem({ pokemon, hacerClick }) {
           />
           <CardContent>
             <Typography gutterBottom variant='h5' component='h2'>
-              {pokemon.name.english}
+              {pokemon.name}
             </Typography>
           </CardContent>
         </CardActionArea>

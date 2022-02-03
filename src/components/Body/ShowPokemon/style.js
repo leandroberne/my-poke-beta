@@ -7,3 +7,7 @@ export const ShowPokemonLayout = styled.div`
   height: 70%;
   width: 80%;
 `;
+
+export const FillerDiv = styled.div`
+  height: 40px;
+`;
