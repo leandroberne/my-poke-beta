@@ -8,3 +8,10 @@ export const NavigatorLayout = styled.div`
   height: 10%;
   margin-bottom: 20px;
 `;
+
+export const InputSearch = styled.input`
+  text-align: center;
+  width: 20px;
+  height: 30px;
+  font-weight: bold;
+`;

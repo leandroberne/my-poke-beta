@@ -18,6 +18,8 @@ function CardContainer({ AppState }) {
   });
 
   const [actualPage, setActualPage] = useState(0);
+  const [pageNumber, setPageNumber] = useState(1);
+  const maximo = Math.round(mainState.listPokemon.length / 9);
 
   useEffect(() => {
     if (mainState.listPokemon.length === 0) {
@@ -69,12 +71,16 @@ function CardContainer({ AppState }) {
   };
 
   const nextPage = () => {
-    setActualPage(actualPage + 9);
+    if (pageNumber < maximo) {
+      setActualPage(actualPage + 9);
+      setPageNumber(pageNumber + 1);
+    }
   };
 
   const prevPage = () => {
     if (actualPage > 0) {
       setActualPage(actualPage - 9);
+      setPageNumber(pageNumber - 1);
     }
   };
 
@@ -105,10 +111,14 @@ function CardContainer({ AppState }) {
                 );
               })}
       </CardContainerLayout>
-      <Navigator prevPage={prevPage} nextPage={nextPage}></Navigator>
+      <Navigator
+        prevPage={prevPage}
+        nextPage={nextPage}
+        pageNumber={pageNumber}
+        maximo={maximo}
+      ></Navigator>
     </>
   );
 }
 
 export default CardContainer;
-//><

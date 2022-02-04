@@ -1,24 +1,30 @@
 import React from 'react';
-import { NavigatorLayout } from './style';
+import { NavigatorLayout, InputSearch } from './style';
 import { makeStyles } from '@material-ui/core/styles';
-import Pagination from '@material-ui/lab/Pagination';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
-      marginTop: theme.spacing(2),
+      margin: theme.spacing(1),
     },
   },
 }));
 
-function Navigator({ prevPage, nextPage }) {
+function Navigator({ prevPage, nextPage, pageNumber, maximo }) {
   const classes = useStyles();
+  const anterior = '< Anterior';
+  const siguiente = 'Siguiente >';
   return (
     <NavigatorLayout>
       <div className={classes.root}>
-        <Pagination count={10} color='primary' />
-        <button onClick={prevPage}>Anteriores</button>
-        <button onClick={nextPage}>Siguientes</button>
+        <Button variant='outlined' color='primary' onClick={prevPage}>
+          {anterior}
+        </Button>
+        <InputSearch type='text' readOnly value={pageNumber} max={maximo} />
+        <Button variant='outlined' color='primary' onClick={nextPage}>
+          {siguiente}
+        </Button>
       </div>
     </NavigatorLayout>
   );
